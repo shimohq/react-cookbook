@@ -210,6 +210,13 @@ render () {
 ```javascript
 //bad
 class DropDownMenu extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      showMenu: false
+    }
+  }
+
   show () {
     this.setState({display: true})
   }
@@ -479,7 +486,7 @@ render () {
 render () {
   let classes = {
     menu: true,
-    display: this.props.display
+    active: this.props.display
   }
 
   return <div className={classnames(classes)} />
