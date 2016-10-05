@@ -310,7 +310,7 @@ class MessageList extends Component {
     }).then(({messages}) => this.setState({messages}))
   }
 
-  handleClick = () => this.setState({onlyUnread: true})
+  handleClick = () => this.setState({onlyUnread: !this.state.onlyUnread})
 
   render () {
     return (
@@ -379,6 +379,10 @@ MessageList.propTypes = {
 }
 ```
 
+更多阅读:
+- [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.sz7z538t6)
+- [React AJAX Best Practices](http://andrewhfarmer.com/react-ajax-best-practices/)
+
 **[⬆ 回到目录](#目录)**
 
 ## 纯函数的 render
@@ -396,6 +400,8 @@ render () {
   return <div>{this.props.userAgent}</div>
 }
 ```
+
+更多阅读: [Return as soon as you know the answer](https://medium.com/@SimonRadionov/return-as-soon-as-you-know-the-answer-dec6369b9b67#.q67w8z60g)
 
 **[⬆ 回到目录](#目录)**
 
