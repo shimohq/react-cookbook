@@ -369,7 +369,7 @@ function MessageList ({messages, toggleUnread}) {
             })
         }
       </ul>
-      <button onClick={this.handleClick}>toggle unread</button>
+      <button onClick={toggleUnread}>toggle unread</button>
     </div>
   )
 }
