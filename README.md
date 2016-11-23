@@ -24,9 +24,11 @@ React Cookbook
 
 随着应用规模和维护人数的增加，光靠 React 本身灵活易用的 API 并不足以有效控制应用的复杂度。本指南旨在在 ESLint 之外，再建立一个我们团队内较为一致认可的约定，以增加代码一致性和可读性、降低维护成本。
 
+_欢迎在 [Issues](https://github.com/shimohq/react-cookbook/issues) 进行相关讨论_
+
 ## 组件声明
 
-全面使用 ES6 class 声明，可不严格遵守该次序，但如有 propTypes 则必须写在顶部， lifecycle events 必须写到一起。
+全面使用 ES6 class 声明，可不严格遵守该属性声明次序，但如有 propTypes 则必须写在顶部， lifecycle events 必须写到一起。
 
 * class
   * propTypes
@@ -206,7 +208,7 @@ render () {
 
 一般组件不应提供公共方法，这样会破坏数据流只有一个方向的原则。
 
-再因为我们倾向于更细颗粒的组件化，状态应集中在远离渲染的地方处理（比如应用级别的状态就在 redux 的 store 里），更方便共享。
+再因为我们倾向于更细颗粒的组件化，状态应集中在远离渲染的地方处理（比如应用级别的状态就在 redux 的 store 里），也能使兄弟组件更方便地共享。
 
 ```javascript
 //bad
@@ -286,6 +288,8 @@ class MyComponent extends Component {
   }
 }
 ```
+
+更多阅读: [lifting-state-up](https://facebook.github.io/react/docs/lifting-state-up.html)
 
 ## 容器组件
 
