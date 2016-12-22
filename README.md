@@ -173,7 +173,7 @@ render () {
   return (
     <div className="menu">
       <ul>
-        {this.props.itmes.map(item => this.renderItem(item))}
+        {this.props.items.map(item => this.renderItem(item))}
       </ul>
     </div>
   )
@@ -195,7 +195,7 @@ render () {
   return (
     <div className="menu">
       <ul>
-        {this.props.itmes.map(item => <Items {...item} />)}
+        {this.props.items.map(item => <Items {...item} />)}
       </ul>
     </div>
   )
