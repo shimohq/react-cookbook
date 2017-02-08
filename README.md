@@ -463,7 +463,7 @@ MyComponent.defaultProps = {
 // bad
 constructor (props) {
   this.state = {
-    items: this.props.items
+    items: props.items
   }
 }
 ```
@@ -472,7 +472,7 @@ constructor (props) {
 // good
 constructor (props) {
   this.state = {
-    items: this.props.initialItems
+    items: props.initialItems
   }
 }
 ```
