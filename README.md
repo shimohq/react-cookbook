@@ -17,6 +17,7 @@ React Cookbook
 - [Props 非空检测](#props-非空检测)
 - [使用 Props 初始化](#使用-props-初始化)
 - [classnames](#classnames)
+- [避免不必要的重绘](#避免不必要的重绘)
 
 ---
 
@@ -505,5 +506,87 @@ render () {
 ```
 
 Read: [Class Name Manipulation](https://github.com/JedWatson/classnames/blob/master/README.md)
+
+**[⬆ 回到目录](#目录)**
+
+## 避免不必要的重绘
+
+某些情况下，已经可以确定某组件不需要重绘，在shouldComponentUpdate中返回false。
+
+```javascript
+// bad
+class CounterButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {count: 1};
+  }
+
+  render() {
+    return (
+      <button
+        color={this.props.color}
+        onClick={() => this.setState(state => ({count: state.count + 1}))}>
+        Count: {this.state.count}
+      </button>
+    );
+  }
+}
+
+
+```
+
+```javascript
+// good
+class CounterButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {count: 1};
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.color !== nextProps.color) {
+      return true;
+    }
+    if (this.state.count !== nextState.count) {
+      return true;
+    }
+    return false;
+  }
+
+  render() {
+    return (
+      <button
+        color={this.props.color}
+        onClick={() => this.setState(state => ({count: state.count + 1}))}>
+        Count: {this.state.count}
+      </button>
+    );
+  }
+}
+```
+
+如果该组件的重绘只依赖于props和state，可以直接继承React.PureComponent。它实现了shouldComponentUpdate方法，对nextProps和nextState进行浅对比。
+
+```javascript
+// good
+class CounterButton extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {count: 1};
+  }
+
+  render() {
+    return (
+      <button
+        color={this.props.color}
+        onClick={() => this.setState(state => ({count: state.count + 1}))}>
+        Count: {this.state.count}
+      </button>
+    );
+  }
+}
+```
+
+Read: [Avoid Reconciliation](https://reactjs.org/docs/optimizing-performance.html)
 
 **[⬆ 回到目录](#目录)**
