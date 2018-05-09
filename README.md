@@ -495,7 +495,7 @@ render () {
 ```javascript
 // good
 render () {
-  let classes = {
+  const classes = {
     menu: true,
     active: this.props.display
   }
