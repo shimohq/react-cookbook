@@ -49,7 +49,9 @@ class Person extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = { smiling: false }
+    this.state = { 
+      smiling: false 
+    }
 
     /* 若不能使用 babel-plugin-transform-class-properties
     this.handleClick = () => {
@@ -302,10 +304,10 @@ class MyComponent extends Component {
 class MessageList extends Component {
   constructor (props) {
     super(props)
-  	this.state = {
-        onlyUnread: false,
-        messages: []
-  	}
+    this.state = {
+      onlyUnread: false,
+      messages: []
+    }
   }
 
   componentDidMount () {
@@ -340,10 +342,10 @@ class MessageList extends Component {
 class MessageContainer extends Component {
   constructor (props) {
     super(props)
-  	this.state = {
-        onlyUnread: false,
-        messages: []
-  	}
+    this.state = {
+      onlyUnread: false,
+      messages: []
+    }
   }
 
   componentDidMount () {
@@ -355,10 +357,12 @@ class MessageContainer extends Component {
   handleClick = () => this.setState({onlyUnread: !this.state.onlyUnread})
 
   render () {
-    return <MessageList
-      messages={this.state.messages.filter(msg => this.state.onlyUnread ? !msg.asRead : true)}
-      toggleUnread={this.handleClick}
-    />
+    return (
+      <MessageList
+        messages={this.state.messages.filter(msg => this.state.onlyUnread ? !msg.asRead : true)}
+        toggleUnread={this.handleClick}
+      />
+    )
   }
 }
 
